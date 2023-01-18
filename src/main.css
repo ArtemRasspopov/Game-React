@@ -1,0 +1,38 @@
+.app {
+  text-align: center;
+  display: flex;
+  height: 100vh;
+  background-color: #282c34;
+  position: relative;
+  overflow: hidden;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+.plane{
+  position: absolute;
+  width: 30px;
+  height: 10px;
+  background-color: #fff;
+
+  transition: all 5s linear;
+  animation: moveToRigth 50s forwards linear;
+}
+
+.gameOver{
+  color: #fff;
+  text-align: center;
+  font-size: 50px;
+}
+
+@keyframes moveToRigth {
+  0% {
+    transform: translateX(-100px);
+  }
+  100% {
+    transform: translateX(100vw);
+  }
+}
