@@ -17,15 +17,42 @@
   width: 30px;
   height: 10px;
   background-color: #fff;
+  cursor: pointer;
 
-  transition: all 5s linear;
-  animation: moveToRigth 50s forwards linear;
+  transition: all 1s linear;
+  animation: moveToRigth 20s forwards linear;
+}
+
+.plane--active{
+  background-color: rgba(161, 9, 34, 0.838);
+}
+
+.plain__word{
+  width: max-content;
+  background-color: rgba(82, 82, 82, 0.523);
+  margin-top: -30px;
+  color: white;
+  display: flex;
+  font-size: 20px;
+  gap: 3px;
+  padding: 3px;
 }
 
 .gameOver{
+  width: 100%;
   color: #fff;
   text-align: center;
   font-size: 50px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.548);
+  z-index: 2;
 }
 
 @keyframes moveToRigth {
