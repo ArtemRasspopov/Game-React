@@ -9,18 +9,29 @@ import avatar7 from "../images/avatars/AVATAR-7.png";
 import avatar8 from "../images/avatars/AVATAR-8.png";
 import avatar9 from "../images/avatars/AVATAR-9.png";
 import { useDispatch, useSelector } from "react-redux";
-import { setAvatar, setgameStatus } from "../redux/slices/gameSlice";
+import { setAvatar, setgameStatus, setUserName } from "../redux/slices/gameSlice";
 
-const avatars = [avatar1, avatar2, avatar3, avatar4, avatar5, avatar6, avatar7, avatar8, avatar9];
+const avatars = [
+  avatar1,
+  avatar2,
+  avatar3,
+  avatar4,
+  avatar5,
+  avatar6,
+  avatar7,
+  avatar8,
+  avatar9,
+];
 
 const HomePage = () => {
   const dispatch = useDispatch();
-  const {avatar} = useSelector((state) => state.gameSlice)
-  const [username, setUsername] = useState("user");
+  const { avatar, userName } = useSelector((state) => state.gameSlice);
+  const [username, setUsername] = useState(userName);
 
   const startGameHandler = () => {
     if (username.length > 1) {
-      dispatch(setgameStatus({ userName: username, gameStatus: "game" }));
+      dispatch(setgameStatus("game"));
+      dispatch(setUserName(username));
     }
   };
 
@@ -29,14 +40,14 @@ const HomePage = () => {
   };
 
   const changeAwatarHandler = () => {
-    dispatch(setAvatar())
-  }
+    dispatch(setAvatar());
+  };
 
   return (
     <div className="home">
       <div className="home__inner">
         <div className="home__avatar" onClick={() => changeAwatarHandler()}>
-          <img src={avatars[avatar]} alt="avatar"/>
+          <img src={avatars[avatar]} alt="avatar" />
         </div>
         <input
           className="home__input"
@@ -45,7 +56,7 @@ const HomePage = () => {
           onChange={(event) => userNameInputHandler(event)}
         />
         <button
-          className="home__sturt_button"
+          className="home__sturt_button button"
           onClick={() => startGameHandler()}
         >
           Start game

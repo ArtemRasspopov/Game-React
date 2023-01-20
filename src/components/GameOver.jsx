@@ -1,7 +1,24 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { setgameStatus } from "../redux/slices/gameSlice";
+import { resetGame } from "../redux/slices/plaintsSlice";
 
 const GameOver = () => {
-  return <div className="gameOver">Game Over</div>;
+  const dispatch = useDispatch()
+  const {score} = useSelector((state) => state.plaintsSlice)
+
+  const backToMenuHandler = () => {
+    dispatch(setgameStatus('main'))
+    dispatch(resetGame())
+  }
+
+  return (
+    <div className="gameOver">
+      <span>Game Over</span>
+      <div className="score">score : {score}</div>
+      <button className="gameOver__button button" onClick={() => backToMenuHandler()}>Back to menu</button>
+    </div>
+  );
 };
 
 export default GameOver;

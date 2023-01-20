@@ -2,9 +2,9 @@ import React, { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import GameOver from "./components/GameOver";
 import HomePage from "./components/HomePage";
+import Map from "./components/Map";
 import Plain from "./components/Plain";
 import { addPlain, setLetters } from "./redux/slices/plaintsSlice";
-import { wordsData } from "./wordsData";
 
 function App() {
   const { plains, gameOver } = useSelector((state) => state.plaintsSlice);
@@ -24,7 +24,7 @@ function App() {
     const counter = () => {
       intervalRef.current = setInterval(() => {
         dispatch(addPlain());
-      }, 2000);
+      }, (1000));
     };
     if (gameStatus === "game") {
       counter();
@@ -39,6 +39,7 @@ function App() {
 
   return (
     <div className="app">
+      <Map/>
       {gameStatus === "main" && <HomePage />}
       {gameOver && <GameOver />}
       {gameStatus === "game" && (
