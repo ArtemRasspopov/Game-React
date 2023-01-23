@@ -1,11 +1,11 @@
 import React, { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setGameOver } from "../redux/slices/plaintsSlice";
+import { setGameOver } from "../redux/slices/gameSlice";
 
 const Plain = ({ id }) => {
   const plainRef = useRef(null);
-  const plain = useSelector((state) => state.plaintsSlice.plains[id]);
-  const activePlain = useSelector((state) => state.plaintsSlice.activePlain);
+  const plain = useSelector((state) => state.gameSlice.plains[id]);
+  const activePlain = useSelector((state) => state.gameSlice.activePlain);
   const dispatch = useDispatch();
 
   useEffect(() => {

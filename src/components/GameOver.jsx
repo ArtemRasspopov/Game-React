@@ -1,11 +1,11 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setgameStatus } from "../redux/slices/gameSlice";
-import { resetGame } from "../redux/slices/plaintsSlice";
+import { resetGame } from "../redux/slices/gameSlice";
 
 const GameOver = () => {
   const dispatch = useDispatch()
-  const {score} = useSelector((state) => state.plaintsSlice)
+  const {score} = useSelector((state) => state.gameSlice)
 
   const backToMenuHandler = () => {
     dispatch(setgameStatus('main'))
