@@ -7,7 +7,7 @@ import Plain from "./components/Plain";
 import { addPlain, setLetters } from "./redux/slices/gameSlice";
 
 function App() {
-  const { plains, gameOver, gameStatus } = useSelector((state) => state.gameSlice);
+  const { plains, gameOver, gameStatus, complexity } = useSelector((state) => state.gameSlice);
   const dispatch = useDispatch();
   let intervalRef = useRef(null);
 
@@ -23,12 +23,12 @@ function App() {
     const counter = () => {
       intervalRef.current = setInterval(() => {
         dispatch(addPlain());
-      }, (1000));
+      }, (complexity === ("low" || "medium") ? 2000 : complexity === "hard" ? 1000 : 500));
     };
     if (gameStatus === "game") {
       counter();
     }
-  }, [gameStatus, dispatch]);
+  }, [gameStatus, dispatch, complexity]);
 
   useEffect(() => {
     if (gameOver) {

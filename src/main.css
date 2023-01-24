@@ -30,8 +30,20 @@ body{
   justify-content: center;
   align-items: center;
   transition: all 5s linear;
-  animation: moveToRigth 20s forwards linear;
   
+}
+
+.plain--low{
+  animation: moveToRigth 50s forwards linear;
+}
+.plain--medium{
+  animation: moveToRigth 30s forwards linear;
+}
+.plain--hard{
+  animation: moveToRigth 20s forwards linear;
+}
+.plain--unreal{
+  animation: moveToRigth 20s forwards linear;
 }
 
 .plane svg{
@@ -131,7 +143,7 @@ body{
   width: 130px;
   height: 100%;
   object-fit: cover;
-  transition: all 0.5s;
+  /* transition: all 0.5s; */
 }
 
 .button{
@@ -222,6 +234,13 @@ body{
   bottom: -5px;
   left: -5px;
   right: -5px;
+}
+
+.lock{
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  /* width: 200px; */
 }
 
 .town svg{

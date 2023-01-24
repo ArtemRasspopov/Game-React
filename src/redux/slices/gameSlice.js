@@ -47,6 +47,9 @@ const initialState = {
   activePlain: 0,
   gameOver: false,
   score: 0,
+  bestScore: 0,
+  language: 'ru',
+  complexity: 'low'
 };
 
 export const gameSlice = createSlice({
@@ -119,6 +122,12 @@ export const gameSlice = createSlice({
       state.gameOver = false;
       state.score = 0;
     },
+    srtComplexity: (state, action) => {
+      state.complexity = action.payload
+    },
+    setLanguage: (state, action) => {
+      state.language = action.payload
+    }
   },
 });
 
@@ -131,6 +140,8 @@ export const {
   setLetters,
   setGameOver,
   resetGame,
+  srtComplexity,
+  setLanguage
 } = gameSlice.actions;
 
 export default gameSlice.reducer;

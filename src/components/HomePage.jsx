@@ -12,7 +12,9 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   setAvatar,
   setgameStatus,
+  setLanguage,
   setUserName,
+  srtComplexity,
 } from "../redux/slices/gameSlice";
 import { theme } from "../theme";
 
@@ -30,7 +32,9 @@ const avatars = [
 
 const HomePage = () => {
   const dispatch = useDispatch();
-  const { avatar, userName } = useSelector((state) => state.gameSlice);
+  const { avatar, userName, complexity, language, bestScore } = useSelector(
+    (state) => state.gameSlice
+  );
   const [username, setUsername] = useState(userName);
 
   const startGameHandler = () => {
@@ -48,11 +52,27 @@ const HomePage = () => {
     dispatch(setAvatar(option));
   };
 
+  const complexityHandler = (title) => {
+    dispatch(srtComplexity(title));
+  };
+
+  const languageHandler = (title) => {
+    dispatch(setLanguage(title));
+  };
+
   return (
     <div className="home">
-      <div className="home__inner">
-        <h1 className="game_title" style={{color: theme[avatar].gameTitle}}>KILL WORDS</h1>
-        <button className="home__avatar_button" onClick={() => changeAwatarHandler('prev')}>
+      <div
+        className="home__inner"
+        style={avatar > 2 ? { opacity: "0.8" } : { opacity: "1" }}
+      >
+        <h1 className="game_title" style={{ color: theme[avatar].gameTitle }}>
+          KILL WORDS
+        </h1>
+        <button
+          className="home__avatar_button"
+          onClick={() => changeAwatarHandler("prev")}
+        >
           <svg
             width="11"
             height="18"
@@ -67,7 +87,10 @@ const HomePage = () => {
             />
           </svg>
         </button>
-        <button className="home__avatar_button" onClick={() => changeAwatarHandler('next')}>
+        <button
+          className="home__avatar_button"
+          onClick={() => changeAwatarHandler("next")}
+        >
           <svg
             width="11"
             height="18"
@@ -83,6 +106,24 @@ const HomePage = () => {
           </svg>
         </button>
         <div className="home__avatar">
+          {avatar > 2 && (
+            <svg
+              className="lock"
+              width="100"
+              height="100"
+              viewBox="0 0 14 16"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fillRule="evenodd"
+                clipRule="evenodd"
+                d="M2.00006 7V5C2.00006 2.23858 4.23864 0 7.00006 0C9.76148 0 12.0001 2.23858 12.0001 5V7C13.1046 7 14.0001 7.89543 14.0001 9V14C14.0001 15.1046 13.1046 16 12.0001 16H2.00006C0.895491 16 6.10352e-05 15.1046 6.10352e-05 14V9C6.10352e-05 7.89543 0.895492 7 2.00006 7ZM10.0001 5V7H4.00006V5C4.00006 3.34315 5.34321 2 7.00006 2C8.65692 2 10.0001 3.34315 10.0001 5Z"
+                fill="#6e6d6d"
+              />
+            </svg>
+          )}
+
           <img src={avatars[avatar]} alt="avatar" />
         </div>
         <input
@@ -92,16 +133,34 @@ const HomePage = () => {
           onChange={(event) => userNameInputHandler(event)}
         />
         <div className="home__chose">
-          <button className="home__chose_button button">low</button>
-          <button className="home__chose_button button home__chose_button--active">
+          <button
+            className={`home__chose_button button ${complexity === 'low' ? 'home__chose_button--active' : ''}`}
+            onClick={() => complexityHandler("low")}
+          >
+            low
+          </button>
+          <button
+            className={`home__chose_button button ${complexity === 'medium' ? 'home__chose_button--active' : ''}`}
+            onClick={() => complexityHandler("medium")}
+          >
             medium
           </button>
-          <button className="home__chose_button button">hard</button>
-          <button className="home__chose_button button">unreal</button>
+          <button
+            className={`home__chose_button button ${complexity === 'hard' ? 'home__chose_button--active' : ''}`}
+            onClick={() => complexityHandler("hard")}
+          >
+            hard
+          </button>
+          <button
+            className={`home__chose_button button ${complexity === 'unreal' ? 'home__chose_button--active' : ''}`}
+            onClick={() => complexityHandler("unreal")}
+          >
+            unreal
+          </button>
         </div>
         <div className="home__chose">
-          <button className="home__chose_button button">ru</button>
-          <button className="home__chose_button button home__chose_button--active">
+          <button className={`home__chose_button button ${language === 'ru' ? 'home__chose_button--active' : ''}`} onClick={() => languageHandler("ru")}>ru</button>
+          <button className={`home__chose_button button ${language === 'en' ? 'home__chose_button--active' : ''}`} onClick={() => languageHandler("en")}>
             en
           </button>
         </div>
@@ -111,8 +170,9 @@ const HomePage = () => {
         >
           Start game
         </button>
-        <p className="score" style={{color: theme[avatar].bestScore}}>
-          BEST SCORE : <span style={{color: theme[avatar].bestScoreSpan}}>26</span>
+        <p className="score" style={{ color: theme[avatar].bestScore }}>
+          BEST SCORE :{" "}
+          <span style={{ color: theme[avatar].bestScoreSpan }}>{bestScore}</span>
         </p>
       </div>
     </div>
