@@ -2,6 +2,9 @@ import { createSlice } from "@reduxjs/toolkit";
 
 export const localUser = localStorage.getItem("userName");
 export const localUserAvatar = localStorage.getItem("userAvatar");
+export const localBestScore = localStorage.getItem("bestScore");
+export const localComplexity = localStorage.getItem("complexity");
+export const localLanguage = localStorage.getItem("language");
 
 const words = [
   "тайпскрипт",
@@ -47,9 +50,9 @@ const initialState = {
   activePlain: 0,
   gameOver: false,
   score: 0,
-  bestScore: 0,
-  language: 'ru',
-  complexity: 'low'
+  bestScore: localBestScore ? localBestScore : 0,
+  language: localLanguage ? localLanguage : 'ru',
+  complexity: localComplexity ? localComplexity : 'low',
 };
 
 export const gameSlice = createSlice({
@@ -59,13 +62,15 @@ export const gameSlice = createSlice({
     setgameStatus: (state, action) => {
       state.gameStatus = action.payload;
     },
+
     setUserName: (state, action) => {
       state.userName = action.payload;
       localStorage.setItem("userName", `${action.payload}`);
     },
+
     setAvatar: (state, action) => {
       if (action.payload === "next") {
-        if (state.avatar < 8) {
+        if (state.avatar < 2) {
           state.avatar++;
           localStorage.setItem("userAvatar", `${state.avatar}`);
         }
@@ -86,9 +91,11 @@ export const gameSlice = createSlice({
         killed: false,
       });
     },
+
     setActivePlain: (state) => {
       state.activePlain = state.activePlain + 1;
     },
+
     setLetters: (state, action) => {
       const pressedLetter = action.payload;
       const activePlain = state.activePlain;
@@ -103,11 +110,18 @@ export const gameSlice = createSlice({
         }
       }
     },
+
     setGameOver: (state, action) => {
       if (!state.plains[action.payload].killed) {
         state.gameOver = true;
+
+        if (state.score > state.bestScore) {
+          state.bestScore = state.score;
+          localStorage.setItem("bestScore", `${state.score}`);
+        }
       }
     },
+
     resetGame: (state) => {
       state.plains = [
         {
@@ -122,12 +136,16 @@ export const gameSlice = createSlice({
       state.gameOver = false;
       state.score = 0;
     },
+
     srtComplexity: (state, action) => {
-      state.complexity = action.payload
+      localStorage.setItem("complexity", `${action.payload}`);
+      state.complexity = action.payload;
     },
+
     setLanguage: (state, action) => {
-      state.language = action.payload
-    }
+      localStorage.setItem("language", `${action.payload}`);
+      state.language = action.payload;
+    },
   },
 });
 
@@ -141,7 +159,7 @@ export const {
   setGameOver,
   resetGame,
   srtComplexity,
-  setLanguage
+  setLanguage,
 } = gameSlice.actions;
 
 export default gameSlice.reducer;

@@ -10,6 +10,7 @@ export const theme = [
     bestScore: "rgba(92, 129, 155, 0.58)",
     bestScoreSpan: "#435c6d",
     arrows: "#475259",
+    gameOverTitle: 'rgba(0, 0, 0, 0.53)',
   },
   {
     bg: "linear-gradient(180deg, #081015 0%, #244258 100%)",
@@ -22,6 +23,7 @@ export const theme = [
     bestScore: "rgba(255, 255, 255, 0.43)",
     bestScoreSpan: "#E2E2E2",
     arrows: "#6699BE",
+    gameOverTitle: '#D9D9D9',
   },
   {
     bg: "linear-gradient(180deg, rgba(0, 145, 251, 0.41) -16.44%, rgba(255, 0, 69, 0.68) 100%)",
@@ -34,6 +36,7 @@ export const theme = [
     bestScore: "rgba(255, 255, 255, 0.73)",
     bestScoreSpan: "white",
     arrows: "white",
+    gameOverTitle: '#FFFFFF',
   },
   {
     bg: "linear-gradient(180deg, rgba(9, 89, 147, 0.39) 0%, rgba(255, 255, 255, 0) 100%)",
@@ -46,6 +49,7 @@ export const theme = [
     bestScore: "gray",
     bestScoreSpan: "gray",
     arrows: "gray",
+    gameOverTitle: 'rgba(0, 0, 0, 0.53)',
   },
   {
     bg: "linear-gradient(180deg, rgba(9, 89, 147, 0.39) 0%, rgba(255, 255, 255, 0) 100%)",
@@ -58,6 +62,7 @@ export const theme = [
     bestScore: "gray",
     bestScoreSpan: "gray",
     arrows: "gray",
+    gameOverTitle: 'rgba(0, 0, 0, 0.53)',
   },
   {
     bg: "linear-gradient(180deg, rgba(9, 89, 147, 0.39) 0%, rgba(255, 255, 255, 0) 100%)",
@@ -70,6 +75,7 @@ export const theme = [
     bestScore: "gray",
     bestScoreSpan: "gray",
     arrows: "gray",
+    gameOverTitle: 'rgba(0, 0, 0, 0.53)',
   },
   {
     bg: "linear-gradient(180deg, rgba(9, 89, 147, 0.39) 0%, rgba(255, 255, 255, 0) 100%)",
@@ -82,6 +88,7 @@ export const theme = [
     bestScore: "gray",
     bestScoreSpan: "gray",
     arrows: "gray",
+    gameOverTitle: 'rgba(0, 0, 0, 0.53)',
   },
   {
     bg: "linear-gradient(180deg, rgba(9, 89, 147, 0.39) 0%, rgba(255, 255, 255, 0) 100%)",
@@ -94,6 +101,7 @@ export const theme = [
     bestScore: "gray",
     bestScoreSpan: "gray",
     arrows: "gray",
+    gameOverTitle: 'rgba(0, 0, 0, 0.53)',
   },
   {
     bg: "linear-gradient(180deg, rgba(9, 89, 147, 0.39) 0%, rgba(255, 255, 255, 0) 100%)",
@@ -106,5 +114,6 @@ export const theme = [
     bestScore: "gray",
     bestScoreSpan: "gray",
     arrows: "gray",
+    gameOverTitle: 'rgba(0, 0, 0, 0.53)',
   },
 ];
