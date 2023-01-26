@@ -124,7 +124,7 @@ const HomePage = () => {
             </svg>
           )}
 
-          <img src={avatars[avatar]} alt="avatar" />
+          <img src={avatars[avatar]} alt="avatar"/>
         </div>
         <input
           className="home__input"
