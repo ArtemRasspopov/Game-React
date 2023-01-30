@@ -4,7 +4,7 @@ import GameOver from "./components/GameOver";
 import HomePage from "./components/HomePage";
 import Map from "./components/Map";
 import Plain from "./components/Plain";
-import { addPlain, fetchText, setLetters } from "./redux/slices/gameSlice";
+import { addPlain, setLetters } from "./redux/slices/gameSlice";
 
 function App() {
   const { plains, gameOver, gameStatus, complexity } = useSelector((state) => state.gameSlice);

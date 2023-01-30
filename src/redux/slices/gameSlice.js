@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import {createSlice } from "@reduxjs/toolkit";
 import { ruData } from "../../data/ruData";
 
 export const localUser = localStorage.getItem("userName");
