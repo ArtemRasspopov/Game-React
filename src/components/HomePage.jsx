@@ -2,12 +2,6 @@ import React, { useState } from "react";
 import avatar1 from "../images/avatars/AVATAR-1.png";
 import avatar2 from "../images/avatars/AVATAR-2.png";
 import avatar3 from "../images/avatars/AVATAR-3.png";
-// import avatar4 from "../images/avatars/AVATAR-4.png";
-// import avatar5 from "../images/avatars/AVATAR-5.png";
-// import avatar6 from "../images/avatars/AVATAR-6.png";
-// import avatar7 from "../images/avatars/AVATAR-7.png";
-// import avatar8 from "../images/avatars/AVATAR-8.png";
-// import avatar9 from "../images/avatars/AVATAR-9.png";
 import { useDispatch, useSelector } from "react-redux";
 import {
   setAvatar,
@@ -17,17 +11,13 @@ import {
   srtComplexity,
 } from "../redux/slices/gameSlice";
 import { theme } from "../theme";
+import { useEffect } from "react";
+import { ruData } from "../data/ruData";
 
 const avatars = [
   avatar1,
   avatar3,
   avatar2,
-  // avatar4,
-  // avatar5,
-  // avatar6,
-  // avatar7,
-  // avatar8,
-  // avatar9,
 ];
 
 const HomePage = () => {
@@ -59,6 +49,10 @@ const HomePage = () => {
   const languageHandler = (title) => {
     dispatch(setLanguage(title));
   };
+
+  useEffect(() => {
+    console.log(ruData);
+  }, [])
 
   return (
     <div className="home">

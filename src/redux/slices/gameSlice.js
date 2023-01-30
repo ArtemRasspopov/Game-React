@@ -1,58 +1,29 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { ruData } from "../../data/ruData";
 
 export const localUser = localStorage.getItem("userName");
 export const localUserAvatar = localStorage.getItem("userAvatar");
 export const localBestScore = localStorage.getItem("bestScore");
 export const localComplexity = localStorage.getItem("complexity");
 export const localLanguage = localStorage.getItem("language");
+const words = ruData;
 
-const words = [
-  "тайпскрипт",
-  "пайтон",
-  "джава",
-  "джаваскрипт",
-  "приложение",
-  "макрос",
-  "мерж",
-  "пулреквест",
-  "коммит",
-  "скоуп",
-  "замыкание",
-  "хостинг",
-  "функция",
-  "класс",
-  "метод",
-  "массив",
-  "эплай",
-  "враппер",
-  "метод",
-  "модуль",
-  "гугл",
-  "яндекс",
-  "мозила",
-  "оператор",
-  "стринг",
-];
+// export const fetchText = createAsyncThunk("users/fetchText", async () => {
+//   const responce = await fetch('https://fish-text.ru/get?type=paragraph&number=1&format=json')
+//   return await responce.json()
+// });
 
 const initialState = {
   gameStatus: "main",
   userName: localUser ? localUser : "gamer",
   avatar: localUserAvatar ? localUserAvatar : 0,
-  plains: [
-    {
-      height: Math.floor(Math.random() * (400 - 50) + 50),
-      id: Date.now(),
-      word: words[Math.floor(Math.random() * (words.length - 1) + 1)],
-      letters: 0,
-      killed: false,
-    },
-  ],
+  plains: [],
   activePlain: 0,
   gameOver: false,
   score: 0,
   bestScore: localBestScore ? localBestScore : 0,
-  language: localLanguage ? localLanguage : 'ru',
-  complexity: localComplexity ? localComplexity : 'low',
+  language: localLanguage ? localLanguage : "ru",
+  complexity: localComplexity ? localComplexity : "low",
 };
 
 export const gameSlice = createSlice({
@@ -147,6 +118,22 @@ export const gameSlice = createSlice({
       state.language = action.payload;
     },
   },
+  // extraReducers: (builder) => {
+  //   builder.addCase(fetchText.fulfilled, (state, action) => {
+  //     if (!state.text.length) {
+  //       state.text = action.payload.text.split(' ')
+  //     }
+  //     state.plains.push({
+  //       height: Math.floor(Math.random() * (400 - 50) + 50),
+  //       id: Date.now(),
+  //       // word: words[Math.floor(Math.random() * (words.length - 1) + 1)],
+  //       word: state.text[state.textCount],
+  //       letters: 0,
+  //       killed: false,
+  //     });
+  //     state.textCount++
+  //   });
+  // },
 });
 
 export const {
