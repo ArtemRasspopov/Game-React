@@ -6,7 +6,7 @@ export const localUserAvatar = localStorage.getItem("userAvatar");
 export const localBestScore = localStorage.getItem("bestScore");
 export const localComplexity = localStorage.getItem("complexity");
 export const localLanguage = localStorage.getItem("language");
-// export const localManual = localStorage.getItem("manual")
+export const localManual = localStorage.getItem("manual")
 
 const words = ruData;
 
@@ -21,7 +21,7 @@ const initialState = {
   bestScore: localBestScore ? localBestScore : 0,
   language: localLanguage ? localLanguage : "ru",
   complexity: localComplexity ? localComplexity : "low",
-  manual: false
+  manual: localManual ? localManual : false
 };
 
 export const gameSlice = createSlice({
@@ -118,7 +118,7 @@ export const gameSlice = createSlice({
     },
 
     setManual: (state, action) => {
-      // localStorage.setItem("manual", action.payload);
+      localStorage.setItem("manual", action.payload);
       state.manual = action.payload
     }
   },
