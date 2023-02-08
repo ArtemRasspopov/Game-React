@@ -114,7 +114,10 @@ body{
   align-items: center;
   max-width: 400px;
   position: relative;
-  animation: scaleIn 1s;
+  animation: scaleIn 1.5s forwards;
+  scale: 0;
+  opacity: 0;
+  animation-delay: 0.3s;
 }
 
 .home__avatar{
@@ -273,19 +276,32 @@ body{
   bottom: -5px;
   left: -5px;
   right: -5px;
+  
 }
 
 .town:nth-child(1){
   animation: fadeInBottom 3.5s forwards;
+  transform: translateY(200px);
+  opacity: 0;
+  animation-delay: 0.5s;
 }
 .town:nth-child(2){
   animation: fadeInBottom 2.5s forwards;
+  transform: translateY(200px);
+  opacity: 0;
+  animation-delay: 0.5s;
 }
 .town:nth-child(3){
   animation: fadeInBottom 2.2s forwards;
+  transform: translateY(200px);
+  opacity: 0;
+  animation-delay: 0.5s;
 }
 .town:nth-child(4){
   animation: fadeInBottom 2s forwards;
+  transform: translateY(200px);
+  opacity: 0;
+  animation-delay: 0.5s;
 }
 
 .lock{
@@ -330,7 +346,7 @@ body{
   position: absolute;
   top: -180px;
   min-width: 1446px;
-  animation: scaleIn 2s;
+  animation: scaleIn 4s;
 }
 
 .width-warning{
@@ -357,14 +373,15 @@ body{
   bottom: 0;
   right: 0;
   left: 0;
-  background-color: rgb(28, 25, 25);
+  background-color: rgba(0, 0, 0, 0.836);
   z-index: 10;
   color: white;
-  transition: all 0.5s;
+  transition: all 1s;
 }
 
-/* .manual.--close{
-} */
+.manual.--close{
+  opacity: 0.1;
+}
 
 .manual_inner{
   display: flex;
@@ -508,8 +525,8 @@ body{
 
 @keyframes fadeInBottom {
   0% {
-    opacity: 0;
-    transform: translateY(200px);
+ 
+    
   }
   100% {
     transform: translateY(0px);

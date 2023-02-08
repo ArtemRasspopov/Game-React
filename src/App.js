@@ -52,22 +52,21 @@ function App() {
 
   return (
     <>
-      {manual && (
-        <div className="app">
-          <Map />
-          {gameStatus === "main" && <HomePage />}
-          {gameOver && <GameOver />}
+      <div className="app">
+        <Map />
+        {gameStatus === "main" && manual && <HomePage />}
+        {gameOver && <GameOver />}
 
-          {gameStatus === "game" && (
-            <>
-              <StartTimer />
-              {plains.map((plain, index) => (
-                <Plain key={index} id={index} plain={plain} />
-              ))}
-            </>
-          )}
-        </div>
-      )}
+        {gameStatus === "game" && (
+          <>
+            <StartTimer />
+            {plains.map((plain, index) => (
+              <Plain key={index} id={index} plain={plain} />
+            ))}
+          </>
+        )}
+      </div>
+
       {!manual && <Manual />}
       <WidthWarning />
     </>

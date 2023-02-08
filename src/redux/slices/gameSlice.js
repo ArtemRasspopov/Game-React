@@ -21,7 +21,8 @@ const initialState = {
   bestScore: localBestScore ? localBestScore : 0,
   language: localLanguage ? localLanguage : "ru",
   complexity: localComplexity ? localComplexity : "low",
-  manual: localManual ? localManual : false
+  // manual: localManual ? localManual : false
+  manual: false
 };
 
 export const gameSlice = createSlice({
