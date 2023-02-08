@@ -380,7 +380,7 @@ body{
 }
 
 .manual.--close{
-  opacity: 0.1;
+  opacity: 0;
 }
 
 .manual_inner{
