@@ -2,10 +2,9 @@ import React, { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setGameOver } from "../redux/slices/gameSlice";
 
-const Plain = ({ id }) => {
+export default React.memo(function Plain({ id, plain }) {
   const plainRef = useRef(null);
   const {complexity} = useSelector((state) => state.gameSlice)
-  const plain = useSelector((state) => state.gameSlice.plains[id]);
   const activePlain = useSelector((state) => state.gameSlice.activePlain);
   const dispatch = useDispatch();
 
@@ -18,7 +17,7 @@ const Plain = ({ id }) => {
   return (
     <div
       className={`plane ${plain.killed ? "plane--killed" : ""} plain--${complexity}`}
-      style={{ top: `${plain.killed ? "100vh" : plain.height + "px"}` }}
+      style={{ top: `${plain.killed ? "110vh" : plain.height + "px"}` }}
       ref={plainRef}
     >
       {!plain.killed && (
@@ -88,6 +87,4 @@ const Plain = ({ id }) => {
       )}
     </div>
   );
-};
-
-export default Plain;
+});

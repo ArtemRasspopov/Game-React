@@ -2,12 +2,17 @@ import React, { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import GameOver from "./components/GameOver";
 import HomePage from "./components/HomePage";
+import Manual from "./components/Manual";
 import Map from "./components/Map";
 import Plain from "./components/Plain";
+import StartTimer from "./components/StartTimer";
+import WidthWarning from "./components/WidthWarning";
 import { addPlain, setLetters } from "./redux/slices/gameSlice";
 
 function App() {
-  const { plains, gameOver, gameStatus, complexity } = useSelector((state) => state.gameSlice);
+  const { manual, plains, gameOver, gameStatus, complexity } = useSelector(
+    (state) => state.gameSlice
+  );
   const dispatch = useDispatch();
   let intervalRef = useRef(null);
 
@@ -21,10 +26,18 @@ function App() {
 
   useEffect(() => {
     const counter = () => {
-      intervalRef.current = setInterval(() => {
-        // dispatch(fetchText())
-        dispatch(addPlain());
-      }, (complexity === ("low" || "medium") ? 2000 : complexity === "hard" ? 1000 : 500));
+      intervalRef.current = setInterval(
+        () => {
+          dispatch(addPlain());
+        },
+        complexity === "low"
+          ? 2000
+          : complexity === "medium"
+          ? 1500
+          : complexity === "hard"
+          ? 1000
+          : 500
+      );
     };
     if (gameStatus === "game") {
       counter();
@@ -38,18 +51,26 @@ function App() {
   }, [gameOver]);
 
   return (
-    <div className="app">
-      <Map/>
-      {gameStatus === "main" && <HomePage />}
-      {gameOver && <GameOver />}
-      {gameStatus === "game" && (
-        <>
-          {plains.map((plain, index) => (
-            <Plain key={index} id={index} />
-          ))}
-        </>
+    <>
+      {manual && (
+        <div className="app">
+          <Map />
+          {gameStatus === "main" && <HomePage />}
+          {gameOver && <GameOver />}
+
+          {gameStatus === "game" && (
+            <>
+              <StartTimer />
+              {plains.map((plain, index) => (
+                <Plain key={index} id={index} plain={plain} />
+              ))}
+            </>
+          )}
+        </div>
       )}
-    </div>
+      {!manual && <Manual />}
+      <WidthWarning />
+    </>
   );
 }
 

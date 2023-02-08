@@ -145,7 +145,8 @@ const HomePage = () => {
             className={`home__chose_button button ${
               language === "en" ? "home__chose_button--active" : ""
             }`}
-            onClick={() => languageHandler("en")}
+            style={{opacity : '0.5'}}
+            // onClick={() => languageHandler("en")}
           >
             en
           </button>

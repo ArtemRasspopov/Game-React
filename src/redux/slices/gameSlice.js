@@ -1,4 +1,4 @@
-import {createSlice } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 import { ruData } from "../../data/ruData";
 
 export const localUser = localStorage.getItem("userName");
@@ -6,12 +6,9 @@ export const localUserAvatar = localStorage.getItem("userAvatar");
 export const localBestScore = localStorage.getItem("bestScore");
 export const localComplexity = localStorage.getItem("complexity");
 export const localLanguage = localStorage.getItem("language");
-const words = ruData;
+// export const localManual = localStorage.getItem("manual")
 
-// export const fetchText = createAsyncThunk("users/fetchText", async () => {
-//   const responce = await fetch('https://fish-text.ru/get?type=paragraph&number=1&format=json')
-//   return await responce.json()
-// });
+const words = ruData;
 
 const initialState = {
   gameStatus: "main",
@@ -24,6 +21,7 @@ const initialState = {
   bestScore: localBestScore ? localBestScore : 0,
   language: localLanguage ? localLanguage : "ru",
   complexity: localComplexity ? localComplexity : "low",
+  manual: false
 };
 
 export const gameSlice = createSlice({
@@ -55,7 +53,7 @@ export const gameSlice = createSlice({
 
     addPlain: (state) => {
       state.plains.push({
-        height: Math.floor(Math.random() * (400 - 50) + 50),
+        height: Math.floor(Math.random() * (500 - 50) + 50),
         id: Date.now(),
         word: words[Math.floor(Math.random() * (words.length - 1) + 1)],
         letters: 0,
@@ -71,6 +69,7 @@ export const gameSlice = createSlice({
       const pressedLetter = action.payload;
       const activePlain = state.activePlain;
       const plain = state.plains[activePlain];
+      console.log(action.payload);
 
       if (pressedLetter === plain.word[plain.letters]) {
         state.plains[activePlain].letters++;
@@ -117,23 +116,12 @@ export const gameSlice = createSlice({
       localStorage.setItem("language", `${action.payload}`);
       state.language = action.payload;
     },
+
+    setManual: (state, action) => {
+      // localStorage.setItem("manual", action.payload);
+      state.manual = action.payload
+    }
   },
-  // extraReducers: (builder) => {
-  //   builder.addCase(fetchText.fulfilled, (state, action) => {
-  //     if (!state.text.length) {
-  //       state.text = action.payload.text.split(' ')
-  //     }
-  //     state.plains.push({
-  //       height: Math.floor(Math.random() * (400 - 50) + 50),
-  //       id: Date.now(),
-  //       // word: words[Math.floor(Math.random() * (words.length - 1) + 1)],
-  //       word: state.text[state.textCount],
-  //       letters: 0,
-  //       killed: false,
-  //     });
-  //     state.textCount++
-  //   });
-  // },
 });
 
 export const {
@@ -147,6 +135,7 @@ export const {
   resetGame,
   srtComplexity,
   setLanguage,
+  setManual
 } = gameSlice.actions;
 
 export default gameSlice.reducer;
