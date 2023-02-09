@@ -28,5 +28,10 @@ You can open a demo of the project by following the link: https://mellifluous-ta
 - CSS animations
 - Scss
 
+## Screenshots
+
+![App Screenshot](https://i.ibb.co/PzHS8px/2023-02-09-140251.png)
+
+![App Screenshot](https://i.ibb.co/b1656N2/2023-02-09-140617.png)
 
 
