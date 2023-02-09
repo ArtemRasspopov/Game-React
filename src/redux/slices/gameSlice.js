@@ -6,10 +6,9 @@ export const localUserAvatar = localStorage.getItem("userAvatar");
 export const localBestScore = localStorage.getItem("bestScore");
 export const localComplexity = localStorage.getItem("complexity");
 export const localLanguage = localStorage.getItem("language");
-export const localManual = localStorage.getItem("manual")
+export const localManual = localStorage.getItem("manual");
 
 const words = ruData;
-
 
 const initialState = {
   gameStatus: "main",
@@ -22,8 +21,9 @@ const initialState = {
   bestScore: localBestScore ? localBestScore : 0,
   language: localLanguage ? localLanguage : "ru",
   complexity: localComplexity ? localComplexity : "low",
+  gameTimer: false,
   // manual: localManual ? localManual : false
-  manual: false
+  manual: false,
 };
 
 export const gameSlice = createSlice({
@@ -54,9 +54,9 @@ export const gameSlice = createSlice({
     },
 
     addPlain: (state) => {
-      let windowHeight = window.innerHeight * 0.7 ;
+      let windowHeight = window.innerHeight * 0.7;
       if (windowHeight > 2000) {
-        windowHeight = 2000
+        windowHeight = 2000;
       }
       state.plains.push({
         height: Math.floor(Math.random() * (windowHeight - 50) + 50),
@@ -72,16 +72,18 @@ export const gameSlice = createSlice({
     },
 
     setLetters: (state, action) => {
-      const pressedLetter = action.payload;
-      const activePlain = state.activePlain;
-      const plain = state.plains[activePlain];
+      if (state.gameTimer) {
+        const pressedLetter = action.payload;
+        const activePlain = state.activePlain;
+        const plain = state.plains[activePlain];
 
-      if (pressedLetter === plain.word[plain.letters]) {
-        state.plains[activePlain].letters++;
-        if (plain.letters === plain.word.length) {
-          state.plains[activePlain].killed = true;
-          state.score++;
-          state.activePlain++;
+        if (pressedLetter === plain.word[plain.letters]) {
+          state.plains[activePlain].letters++;
+          if (plain.letters === plain.word.length) {
+            state.plains[activePlain].killed = true;
+            state.score++;
+            state.activePlain++;
+          }
         }
       }
     },
@@ -89,6 +91,7 @@ export const gameSlice = createSlice({
     setGameOver: (state, action) => {
       if (!state.plains[action.payload].killed) {
         state.gameOver = true;
+        state.gameTimer = false;
 
         if (state.score > state.bestScore) {
           state.bestScore = state.score;
@@ -124,8 +127,12 @@ export const gameSlice = createSlice({
 
     setManual: (state, action) => {
       localStorage.setItem("manual", action.payload);
-      state.manual = action.payload
-    }
+      state.manual = action.payload;
+    },
+
+    setGameTimer: (state, action) => {
+      state.gameTimer = action.payload;
+    },
   },
 });
 
@@ -140,7 +147,8 @@ export const {
   resetGame,
   srtComplexity,
   setLanguage,
-  setManual
+  setManual,
+  setGameTimer,
 } = gameSlice.actions;
 
 export default gameSlice.reducer;

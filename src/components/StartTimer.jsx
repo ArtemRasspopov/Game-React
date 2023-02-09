@@ -1,11 +1,13 @@
 import React, { useEffect, useRef, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { setGameTimer } from "../redux/slices/gameSlice";
 import { theme } from "../theme";
 
 const StartTimer = () => {
   const [time, setTime] = useState(5);
   const {avatar} = useSelector((state) => state.gameSlice)
   let startTimer = useRef(null);
+  const dispatch = useDispatch()
 
   useEffect(() => {
     const counter = () => {
@@ -18,9 +20,10 @@ const StartTimer = () => {
 
   useEffect(() => {
     if (time < 0) {
+      dispatch(setGameTimer(true))
       clearInterval(startTimer.current);
     }
-  }, [time]);
+  }, [time, dispatch]);
 
   return (
     <div

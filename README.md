@@ -19,6 +19,7 @@ You can open a demo of the project by following the link: https://mellifluous-ta
 - English language selection is available
 - Viewing the result of all users
 - Viewing user ratings
+- Оptimization
 
 
 ## Technology stack

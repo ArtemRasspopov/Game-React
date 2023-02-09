@@ -10,9 +10,8 @@ import WidthWarning from "./components/WidthWarning";
 import { addPlain, setLetters } from "./redux/slices/gameSlice";
 
 function App() {
-  const { manual, plains, gameOver, gameStatus, complexity } = useSelector(
-    (state) => state.gameSlice
-  );
+  const { manual, plains, gameOver, gameStatus, complexity } =
+    useSelector((state) => state.gameSlice);
   const dispatch = useDispatch();
 
   let intervalRef = useRef(null);
