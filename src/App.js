@@ -66,10 +66,9 @@ function App() {
             ))}
           </>
         )}
+        {!manual && <Manual />}
+        <WidthWarning />
       </div>
-
-      {!manual && <Manual />}
-      <WidthWarning />
     </>
   );
 }
