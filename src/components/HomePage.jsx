@@ -15,6 +15,7 @@ import { theme } from "../theme";
 const avatars = [avatar1, avatar3, avatar2];
 
 const HomePage = () => {
+  const [hide, setHide] = useState(false);
   const dispatch = useDispatch();
   const { avatar, userName, complexity, language, bestScore } = useSelector(
     (state) => state.gameSlice
@@ -23,8 +24,11 @@ const HomePage = () => {
 
   const startGameHandler = () => {
     if (username.length > 1) {
-      dispatch(setgameStatus("game"));
-      dispatch(setUserName(username));
+      setHide(true);
+      setTimeout(() => {
+        dispatch(setgameStatus("game"));
+        dispatch(setUserName(username));
+      }, 1000);
     }
   };
 
@@ -47,7 +51,7 @@ const HomePage = () => {
   return (
     <div className="home">
       <div
-        className="home__inner"
+        className={`home__inner ${hide ? "--hide" : ""}`}
         style={avatar > 2 ? { opacity: "0.8" } : { opacity: "1" }}
       >
         <h1 className="game_title" style={{ color: theme[avatar].gameTitle }}>
@@ -145,7 +149,7 @@ const HomePage = () => {
             className={`home__chose_button button ${
               language === "en" ? "home__chose_button--active" : ""
             }`}
-            style={{opacity : '0.5'}}
+            style={{ opacity: "0.5" }}
             // onClick={() => languageHandler("en")}
           >
             en

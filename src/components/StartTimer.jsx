@@ -11,7 +11,6 @@ const StartTimer = () => {
     const counter = () => {
       startTimer.current = setInterval(() => {
         setTime((prev) => prev - 1);
-        console.log("timer");
       }, 1000);
     };
     counter();
@@ -19,7 +18,6 @@ const StartTimer = () => {
 
   useEffect(() => {
     if (time < 0) {
-      console.log("start");
       clearInterval(startTimer.current);
     }
   }, [time]);
@@ -29,8 +27,8 @@ const StartTimer = () => {
       className="game-timer"
       style={{ display: `${time < 0 ? "none" : ""}`, color : `${theme[avatar].gameTimer}`}}
     >
-      {time > 0 ? <span>{time}</span> : <span>go</span>}
-      <p>check that you use the RU language</p>
+      {time > 0 ? <p className="game-timer_timer">{time}</p> : <p className="game-timer_timer">go</p>}
+      <p>check that you use the <span>RU</span> language!</p>
     </div>
   );
 };

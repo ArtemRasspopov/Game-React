@@ -10,6 +10,7 @@ export const localManual = localStorage.getItem("manual")
 
 const words = ruData;
 
+
 const initialState = {
   gameStatus: "main",
   userName: localUser ? localUser : "gamer",
@@ -53,8 +54,12 @@ export const gameSlice = createSlice({
     },
 
     addPlain: (state) => {
+      let windowHeight = window.innerHeight * 0.7 ;
+      if (windowHeight > 2000) {
+        windowHeight = 2000
+      }
       state.plains.push({
-        height: Math.floor(Math.random() * (500 - 50) + 50),
+        height: Math.floor(Math.random() * (windowHeight - 50) + 50),
         id: Date.now(),
         word: words[Math.floor(Math.random() * (words.length - 1) + 1)],
         letters: 0,
@@ -70,7 +75,6 @@ export const gameSlice = createSlice({
       const pressedLetter = action.payload;
       const activePlain = state.activePlain;
       const plain = state.plains[activePlain];
-      console.log(action.payload);
 
       if (pressedLetter === plain.word[plain.letters]) {
         state.plains[activePlain].letters++;

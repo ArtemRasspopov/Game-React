@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
 
 body{
-  background-color: rgb(62, 62, 62);
+  background-color: rgb(6, 6, 6);
   font-family: 'Inter', sans-serif;
   font-weight: 400;
   -webkit-user-select: none;
@@ -15,8 +15,8 @@ body{
 .app {
   position: relative;
   margin: 0 auto;
-  max-width: 2000px;
-  max-height: 2000px;
+  max-width: 4000px;
+  max-height: 2500px;
   text-align: center;
   display: flex;
   height: 100vh;
@@ -118,6 +118,9 @@ body{
   scale: 0;
   opacity: 0;
   animation-delay: 0.3s;
+}
+.home__inner.--hide{
+  animation: scaleOut 1s forwards;
 }
 
 .home__avatar{
@@ -262,9 +265,14 @@ body{
   font-weight: 500;
   display: flex;
   flex-direction: column;
+  animation: scaleIn 1s forwards;
 }
 
-.game-timer span {
+.game-timer span{
+  color: rgb(174, 15, 15);
+}
+
+.game-timer_timer {
   font-size: 150px;
   z-index: 9;
   text-transform: uppercase;
@@ -276,7 +284,7 @@ body{
   bottom: -5px;
   left: -5px;
   right: -5px;
-  
+  object-fit: cover;
 }
 
 .town:nth-child(1){
@@ -311,7 +319,7 @@ body{
 }
 
 .town svg{
-  width: auto;
+  width: 100%;
 }
 
 .aim{
@@ -346,7 +354,7 @@ body{
   position: absolute;
   top: -180px;
   min-width: 1446px;
-  animation: scaleIn 4s;
+  animation: scaleIn 3s;
 }
 
 .width-warning{
@@ -435,6 +443,32 @@ body{
   }
 }
 
+@media (min-height: 1100px) {
+  .home,.gameOver,.manual,.game-timer{
+    scale: 1.4;
+  }
+  .plain__word{
+    font-size: 50px;
+    top: -80px;
+  }
+}
+@media (min-height: 1300px) {
+  .home,.gameOver,.manual,.game-timer{
+    scale: 1.6;
+  }
+}
+@media (min-height: 1900px) {
+  .home,.gameOver,.manual,.game-timer{
+    scale: 2;
+  }
+}
+
+@media (min-width: 1920px){
+  .town svg{
+    width: 100%;
+  }
+}
+
 @media (max-height: 530px) {
   .app{
     opacity: 0.4;
@@ -471,14 +505,17 @@ body{
   .manual{
     display: none;
   }
-
   .app{
     opacity: 0.4;
   }
   .width-warning{
     display: flex;
   }
+  .town svg{
+    width: auto;
+  }
 }
+
 @media (max-width: 600px){
 
   .width-warning{

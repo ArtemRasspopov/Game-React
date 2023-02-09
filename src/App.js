@@ -14,6 +14,7 @@ function App() {
     (state) => state.gameSlice
   );
   const dispatch = useDispatch();
+
   let intervalRef = useRef(null);
 
   useEffect(() => {
