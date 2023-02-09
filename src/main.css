@@ -1,6 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
 
+
+/* main */
+
 body{
   background-color: rgb(6, 6, 6);
   font-family: 'Inter', sans-serif;
@@ -11,6 +14,16 @@ body{
 	-ms-user-select: none;
 	user-select: none;
 }
+
+.button{
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: rgb(51, 177, 177);
+  color: rgb(49, 49, 49);
+}
+
+/* App */
 
 .app {
   position: relative;
@@ -30,6 +43,8 @@ body{
   pointer-events: none;
 }
 
+/* Plane */
+
 .plane{
   position: absolute;
   cursor: pointer;
@@ -39,6 +54,13 @@ body{
   align-items: center;
   will-change: auto;
   transition: all 5s linear;
+}
+
+.plane svg{
+  width: 100%;
+  width: 50px;
+  height: 10px;
+  transition: all 5s; 
 }
 
 .plain--low{
@@ -52,13 +74,6 @@ body{
 }
 .plain--unreal{
   animation: moveToRigth 30s forwards linear;
-}
-
-.plane svg{
-  width: 100%;
-  width: 50px;
-  height: 10px;
-  transition: all 5s; 
 }
 
 .plain__word{
@@ -75,6 +90,21 @@ body{
 .plain__word p{
   padding: 0px 2px;
 }
+
+.aim{
+  position: absolute;
+  top: -20px;
+  left: 0px;
+  width: 50px;
+  height: 50px;
+}
+
+.aim svg{
+  width: 100%;
+  height: 100%;
+}
+
+/* GameOver */
 
 .gameOver{
   width: 100%;
@@ -98,6 +128,23 @@ body{
   text-transform: uppercase;
 }
 
+.gameOver__button{
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
+  background-color: #6699BE;
+  color: white;
+  padding: 5px 0px;
+  width: 100%;
+  max-width: 225px;
+}
+
+.gameOver__score{
+  margin-bottom: 40px;
+  margin-top: 10px;
+}
+
+/* Home */
 
 .home{
   flex-grow: 1;
@@ -119,6 +166,7 @@ body{
   opacity: 0;
   animation-delay: 0.3s;
 }
+
 .home__inner.--hide{
   animation: scaleOut 1s forwards;
 }
@@ -164,14 +212,6 @@ body{
   margin-bottom: -5px;
 }
 
-.button{
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  background-color: rgb(51, 177, 177);
-  color: rgb(49, 49, 49);
-}
-
 .home__start_button{
   width: 100%;
   padding: 5px;
@@ -183,18 +223,6 @@ body{
   color: #FFF8F8;
   background-color: #6699BE;
   margin-bottom: 16px;
-
-}
-
-.gameOver__button{
-  font-weight: 400;
-  font-size: 20px;
-  line-height: 24px;
-  background-color: #6699BE;
-  color: white;
-  padding: 5px 0px;
-  width: 100%;
-  max-width: 225px;
 }
 
 .home__input{
@@ -210,11 +238,6 @@ body{
   font-size: 14px;
   width: 100%;
   margin-bottom: 13px;
-}
-
-.gameOver__score{
-  margin-bottom: 40px;
-  margin-top: 10px;
 }
 
 .home__chose{
@@ -240,6 +263,7 @@ body{
   color: #FFF8F8;
 }
 
+/* Map */
 
 .map{
   position: absolute;
@@ -252,6 +276,8 @@ body{
   display: flex;
   flex-direction: column;
 }
+
+/* GameTimer */
 
 .game-timer{
   position: absolute;
@@ -278,6 +304,8 @@ body{
   text-transform: uppercase;
 }
 
+/* Town */
+
 .town{
   margin-top: auto;
   position: absolute;
@@ -285,6 +313,10 @@ body{
   left: -5px;
   right: -5px;
   object-fit: cover;
+}
+
+.town svg{
+  width: 100%;
 }
 
 .town:nth-child(1){
@@ -318,22 +350,7 @@ body{
   transform: translateY(-50%);
 }
 
-.town svg{
-  width: 100%;
-}
-
-.aim{
-  position: absolute;
-  top: -20px;
-  left: 0px;
-  width: 50px;
-  height: 50px;
-}
-
-.aim svg{
-  width: 100%;
-  height: 100%;
-}
+/* Score */
 
 .score{
   font-weight: 500;
@@ -342,12 +359,7 @@ body{
   /* transition: all 0.5 */
 }
 
-.score span{
-  /* transition: all 0.5s; */
-}
-
 .game_title{
-  /* transition: all 0.5s; */
   font-weight: 900;
   font-size: 231px;
   line-height: 280px;
@@ -374,6 +386,8 @@ body{
   text-align: center;
   color: rgba(0, 0, 0, 0.781);
 }
+
+/* Manual */
 
 .manual{
   position: absolute;
@@ -426,6 +440,8 @@ body{
   color: white;
   padding: 5px 20px;
 }
+
+/* Media */
 
 @media (max-height: 780px) {
   .score{
@@ -523,6 +539,8 @@ body{
     display: flex;
   }
 }
+
+/* KeyFrames */
 
 @keyframes scaleIn {
   0% {
